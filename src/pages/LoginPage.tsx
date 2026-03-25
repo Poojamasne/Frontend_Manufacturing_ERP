@@ -32,7 +32,6 @@ export const LoginPage: React.FC = () => {
   const handleLoginClick = () => {
 
   };
-
   
   return <Login onLoginSuccess={handleLoginSuccess}/>;
 };
