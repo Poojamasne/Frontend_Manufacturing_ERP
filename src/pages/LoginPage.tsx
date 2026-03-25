@@ -27,13 +27,11 @@ export const LoginPage: React.FC = () => {
   };
 
   const handleRegisterClick = () => {
-    setShowRegister(true);
   };
 
   const handleLoginClick = () => {
-    setShowRegister(false);
-  };
 
+  };
   
-  return <Login onLoginSuccess={handleLoginSuccess} onRegisterClick={handleRegisterClick} />;
+  return <Login onLoginSuccess={handleLoginSuccess}/>;
 };
