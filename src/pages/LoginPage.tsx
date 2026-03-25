@@ -10,6 +10,7 @@ export const LoginPage: React.FC = () => {
     localStorage.setItem('user', JSON.stringify(user));
     
     const moduleRoutes: Record<string, string> = {
+      
       admin: '/admin',
       sales: '/sales',
       purchase: '/purchase',
