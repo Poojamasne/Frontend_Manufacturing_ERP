@@ -16,8 +16,16 @@ interface LoginProps {
 }
 
 const USERS: User[] = [
-  { id: "1", email: "admin@erp.com", password: "admin123", fullName: "Rajesh Sharma", role: "super_admin", module: "admin", department: "IT Administration" },
-  { id: "2", email: "salesmanager@erp.com", password: "sales123", fullName: "Priya Mehta", role: "sales_manager", module: "sales", department: "Sales" },
+  { id: '1', email: 'admin@erp.com', password: 'admin123', fullName: 'Rajesh Sharma', role: 'super_admin', module: 'admin', department: 'IT Administration' },
+  { id: '2', email: 'salesmanager@erp.com', password: 'sales123', fullName: 'Priya Mehta', role: 'sales_manager', module: 'sales', department: 'Sales' },
+  { id: '3', email: 'salesexec@erp.com', password: 'sales123', fullName: 'Rahul Gupta', role: 'sales_executive', module: 'sales', department: 'Sales' },
+  { id: '4', email: 'purchasemanager@erp.com', password: 'purchase123', fullName: 'Vikram Singh', role: 'purchase_manager', module: 'purchase', department: 'Purchase' },
+  { id: '5', email: 'inventorymanager@erp.com', password: 'inventory123', fullName: 'Suresh Kumar', role: 'inventory_manager', module: 'inventory', department: 'Inventory' },
+  { id: '6', email: 'productionmanager@erp.com', password: 'production123', fullName: 'Deepak Joshi', role: 'production_manager', module: 'production', department: 'Production' },
+  { id: '7', email: 'operator@erp.com', password: 'operator123', fullName: 'Ramesh Kumar', role: 'operator', module: 'operator', department: 'Production' },
+  { id: '8', email: 'qualitymanager@erp.com', password: 'quality123', fullName: 'Sanjay Mehta', role: 'quality_manager', module: 'quality', department: 'Quality Assurance' },
+  { id: '9', email: 'hrmanager@erp.com', password: 'hr1234', fullName: 'Kavita Reddy', role: 'hr_manager', module: 'hrms', department: 'Human Resources' },
+  { id: '10', email: 'accountant@erp.com', password: 'finance123', fullName: 'Seema Joshi', role: 'accountant', module: 'finance', department: 'Finance' },
 ];
 
 export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
@@ -89,10 +97,10 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-6xl bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden flex">
+      <div className="w-full max-w-6xl bg-white rounded-3xl border border-gray-400 overflow-hidden flex">
 
         {/* LEFT IMAGE */}
-        <div className="hidden md:block flex-1 border border-black rounded-l-3xl overflow-hidden">
+        <div className="hidden md:block flex-1 relative z-10 shadow-[10px_0_25px_rgba(0,0,0,0.25)]">
           <img
             src="https://img.freepik.com/free-photo/engineer-working-with-robot-modern-industrial-facility_23-2151962519.jpg"
             className="w-full h-full object-cover"
@@ -100,113 +108,131 @@ export const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="flex-1 p-14 py-6 flex items-center border border-black rounded-r-3xl">          <div className="w-full max-w-md mx-auto px-6">
+        <div className="flex-1 p-14 py-6 flex items-center">
+          <div className="w-full max-w-md mx-auto px-6">
 
-          {/* LOGO */}
-          <div className="flex justify-center mb-4">
-            <img
-              src="https://www.zonixtec.com/Assets/Logo.svg"
-              alt="Logo"
-              className="w-16 h-16 rounded-full border border-gray-200 shadow-sm p-2 bg-black"
-            />
-          </div>
+            {/* LOGO */}
+            <div className="flex justify-center mb-4">
+              <img
+                src="https://www.zonixtec.com/Assets/Logo.svg"
+                alt="Logo"
+                className="w-16 h-16 rounded-full border border-gray-200 shadow-sm p-2 bg-black"
+              />
+            </div>
 
-          {/* HEADINGS */}
-          <h2 className="text-xl font-bold text-center mb-1 text-gray-800">
-            Welcome Back to Manufacturing ERP
-          </h2>
+            {/* HEADINGS */}
+            <h2 className="text-xl font-bold text-center mb-1 text-gray-800">
+              Welcome Back to Manufacturing ERP
+            </h2>
 
-          <h2 className="text-md font-semibold text-center mb-6 text-gray-600">
-            Sign in to your account
-          </h2>
+            <h2 className="text-md font-semibold text-center mb-6 text-gray-600">
+              Sign in to your account
+            </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5">
 
-            {/* EMAIL */}
-            <div className="flex flex-col items-center w-full">
-              <div className="relative w-full max-w-sm">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              {/* EMAIL */}
+              <div className="flex flex-col items-center w-full">
+                <div className="relative w-full max-w-sm">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
 
-                <input
-                  type="email"
-                  placeholder="Email address"
-                  className={`w-full pl-10 pr-3 py-3 text-sm rounded-md border bg-white
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    className={`w-full pl-10 pr-3 py-3 text-sm rounded-md border bg-white
                     transition-all duration-200 hover:shadow-sm focus:outline-none
                     ${emailError
-                      ? "border-red-400 focus:ring-1 focus:ring-red-400"
-                      : "border-gray-300 focus:ring-1 focus:ring-slate-800"
-                    }`}
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    setEmailError(validateEmail(e.target.value));
-                  }}
-                />
+                        ? "border-red-400 focus:ring-1 focus:ring-red-400"
+                        : email
+                        ? "border-green-500 focus:ring-1 focus:ring-green-500"
+                        : "border-gray-300 focus:ring-1 focus:ring-slate-600"
+                      }`}
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setEmailError(validateEmail(e.target.value));
+                      setError(""); // Clear general error on email change
+                    }}
+                  />
+                </div>
+
+                {emailError ? (
+                  <p className="text-red-500 text-xs mt-1 w-full max-w-sm text-left">
+                    {emailError}
+                  </p>
+                ) : email ? (
+                  <p className="text-green-600 text-xs mt-1 w-full max-w-sm text-left">
+                    Valid email
+                  </p>
+                ) : null}
               </div>
 
-              {emailError && (
-                <p className="text-red-500 text-xs mt-1 w-full max-w-sm text-left">
-                  {emailError}
-                </p>
-              )}
-            </div>
+              {/* PASSWORD */}
+              <div className="flex flex-col items-center w-full">
+                <div className="relative w-full max-w-sm">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
 
-            {/* PASSWORD */}
-            <div className="flex flex-col items-center w-full">
-              <div className="relative w-full max-w-sm">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className={`w-full pl-10 pr-10 py-3 text-sm rounded-md border bg-white
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className={`w-full pl-10 pr-10 py-3 text-sm rounded-md border bg-white
                     transition-all duration-200 hover:shadow-sm focus:outline-none
                     ${passwordError
-                      ? "border-red-400 focus:ring-1 focus:ring-red-400"
-                      : "border-gray-300 focus:ring-1 focus:ring-slate-800"
-                    }`}
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setPasswordError(validatePassword(e.target.value));
-                  }}
-                />
+                        ? "border-red-400 focus:ring-1 focus:ring-red-400"
+                        : password
+                        ? "border-green-500 focus:ring-1 focus:ring-green-500"
+                        : "border-gray-300 focus:ring-1 focus:ring-slate-600"
+                      }`}
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setPasswordError(validatePassword(e.target.value));
+                      setError(""); // Clear general error on password change
+                    }}
+                  />
 
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+
+                {passwordError ? (
+                  <p className="text-red-500 text-xs mt-1 w-full max-w-sm text-left">
+                    {passwordError}
+                  </p>
+                ) : password ? (
+                  <p className="text-green-600 text-xs mt-1 w-full max-w-sm text-left">
+                    Looks good
+                  </p>
+                ) : null}
               </div>
 
-              {passwordError && (
-                <p className="text-red-500 text-xs mt-1 w-full max-w-sm text-left">
-                  {passwordError}
-                </p>
+              {/* ERROR */}
+              {error && (
+                <div className="text-red-500 text-sm text-center">{error}</div>
               )}
-            </div>
 
-            {/* ERROR */}
-            {error && (
-              <div className="text-red-500 text-sm text-center">{error}</div>
-            )}
-
-            {/* BUTTON */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full max-w-sm mx-auto block py-3 mt-2 text-sm rounded-md text-white font-medium
+              {/* BUTTON */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full max-w-sm mx-auto block py-3 mt-2 text-sm rounded-md text-white font-medium
                 bg-slate-900 hover:bg-slate-800 transition disabled:opacity-50"
-            >
-              {loading ? "Signing in..." : "Sign In"}
-            </button>
-          </form>
-          <p className="text-xs text-gray-400 text-center mt-5">
-            ©{new Date().getFullYear()} Manufacturing ERP
-          </p>
-        </div>
+              >
+                {loading ? "Signing in..." : "Sign In"}
+              </button>
+
+            </form>
+
+            <p className="text-xs text-gray-600 text-center mt-5">
+              ©{new Date().getFullYear()} Manufacturing ERP
+            </p>
+
+          </div>
         </div>
       </div>
     </div>
