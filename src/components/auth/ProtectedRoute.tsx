@@ -1,17 +1,24 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 interface ProtectedRouteProps {
-  children: React.ReactNode;
-  requiredRole?: string[];
+  requiredRole: string;
 }
 
-export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-  const token = localStorage.getItem('token');
-  
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ requiredRole }) => {
+  const [isAllowed, setIsAllowed] = useState<boolean | null>(null);
+  const location = useLocation();
 
-  return <>{children}</>;
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("userRole");
+
+    setIsAllowed(!!token && role === requiredRole);
+  }, [location, requiredRole]);
+
+  if (isAllowed === null) return <div>Checking access...</div>;
+
+  return isAllowed ? <Outlet /> : <Navigate to="/login" replace />;
 };
+
+export default ProtectedRoute;
